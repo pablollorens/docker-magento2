@@ -31,4 +31,4 @@ cd ..
 echo ""
 echo "Checking shell scripts"
 echo ""
-shellcheck 7.0-cli/bin/* 7.0-fpm/bin/* nginx/bin/* || exit 1
+shellcheck $IMAGE/bin/* || exit 1
