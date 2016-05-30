@@ -24,3 +24,11 @@ echo "Building image.."
 echo ""
 cd $IMAGE && docker build -t $IMAGE . || exit 1
 cd ..
+
+################################################################################
+# Running shellcheck
+################################################################################
+echo ""
+echo "Checking shell scripts"
+echo ""
+shellcheck 7.0-cli/bin/* 7.0-fpm/bin/* nginx/bin/* || exit 1
