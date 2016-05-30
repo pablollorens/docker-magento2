@@ -31,4 +31,4 @@ cd ..
 echo ""
 echo "Checking shell scripts"
 echo ""
-shellcheck $IMAGE/bin/* || exit 1
+shellcheck --exclude=SC2086,SC2006 $IMAGE/bin/* || exit 1
