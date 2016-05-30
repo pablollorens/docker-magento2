@@ -1,0 +1,13 @@
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_IP=localhost
+  matrix:
+    - IMAGE=7.0-cli
+    - IMAGE=7.0-fpm
+    - IMAGE=nginx
+
+script:
+  - bash test-runner.sh
