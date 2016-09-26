@@ -4,11 +4,21 @@ A collection of Docker images for running Magento 2 through nginx and on the com
 
 ## Prerequisites
 
-    Be sure that docker-machine is running
+    If your mac doesn't support hyper threading you can use Dinghy the instructions are here https://github.com/codekitchen/dinghy
+
+    Disable Dinghy's proxy
+    Go to ~/.dinghy/preferences.yml and set proxy_disabled to true.
+
+    And start Dinghy
+    dinghy up
+ 
+    If Dinghy was already started you can kill the built-in proxy
+    docker ps --filter name="dinghy_http_proxy" -q | xargs docker rm -f
+
+    Be sure that you have a docker-machine activated
     docker-machine ls
 
-    Otherwise wake it up (example using Dinghy)
-    dinghy up
+    Otherwise just activate Dinghy
     eval $(dinghy shellinit)
 
     Point every *.docker request to your docker machine.
@@ -17,9 +27,12 @@ A collection of Docker images for running Magento 2 through nginx and on the com
     Create a network called nginx-proxy
     docker network create nginx-proxy
 
+    Start nginx reverse proxy from jwilder/nginx-proxy repository
+    docker run -d --network nginx-proxy -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+
 ## Quick Start
 
-    Modify docker-compose.yml and change VHOST_NAME environtment variable and M2SETUP_BASE_URL accordingly.
+    Modify docker-compose.yml and change VHOST_NAME environment variable and M2SETUP_BASE_URL with the url that you want to use for development.
 
     cp composer.env.sample composer.env
     # ..put the correct tokens into composer.env anyway possible the installation of sample data will ask for them again, keep them visible somewhere.
