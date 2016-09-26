@@ -2,11 +2,31 @@
 
 A collection of Docker images for running Magento 2 through nginx and on the command line.
 
+## Prerequisites
+
+    Be sure that docker-machine is running
+    docker-machine ls
+
+    Otherwise wake it up (example using Dinghy)
+    dinghy up
+    eval $(dinghy shellinit)
+
+    Point every *.docker request to your docker machine.
+    echo $(docker-machine ip $(docker-machine active)) docker >> /etc/hosts
+
+    Create a network called nginx-proxy
+    docker network create nginx-proxy
+
 ## Quick Start
 
+    Modify docker-compose.yml and change VHOST_NAME environtment variable and M2SETUP_BASE_URL accordingly.
+
     cp composer.env.sample composer.env
-    # ..put the correct tokens into composer.env
-    
+    # ..put the correct tokens into composer.env anyway possible the installation of sample data will ask for them again, keep them visible somewhere.
+   
+    If you need sample data uncomment the line
+    - M2SETUP_USE_SAMPLE_DATA=true
+ 
     mkdir magento
 
     docker-compose run cli magento-installer
