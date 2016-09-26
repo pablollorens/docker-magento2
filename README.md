@@ -30,6 +30,9 @@ A collection of Docker images for running Magento 2 through nginx and on the com
     Start nginx reverse proxy from jwilder/nginx-proxy repository
     docker run -d --network nginx-proxy -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
 
+    Insert the following Alias in your ~/.bashrc file so you can execute magento console from the root folder of your project
+    alias magento='docker-compose exec fpm /var/www/magento/bin/magento'
+
 ## Quick Start
 
     Modify docker-compose.yml and change VHOST_NAME environment variable and M2SETUP_BASE_URL with the url that you want to use for development.
