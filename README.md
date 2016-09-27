@@ -51,15 +51,14 @@ A collection of Docker images for running Magento 2 through nginx and on the com
 
 ## Troubleshooting
  
-    If proxy is returning 502/503 errors, first of all you can check the nginx configuration
-    
-	1) Retrieve the name of the proxy with "docker ps"
-        2) Print configuration "docker exec -it name_of_proxy_container cat /etc/nginx/conf.d/default.conf
-        3) Look at the upstream section and check if everything is ok
+    1) If proxy is returning 502/503 errors, first of all you can check the nginx configuration
+	- Retrieve the name of the proxy with "docker ps"
+        - Print configuration "docker exec -it name_of_proxy_container cat /etc/nginx/conf.d/default.conf
+        - Look at the upstream section and check if everything is ok
 
-    If web container is returning 502 error.
-	1) Restart nginx container "docker exec -it container_web_1 service nginx restart"
-        2) docker-compose up -d
+    2) If web container is returning 502 error.
+	- Restart nginx container "docker exec -it container_web_1 service nginx restart"
+        - docker-compose up -d
 
 
 ## Configuration
